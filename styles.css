@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+}
+
+.table_overviews {
+  display: flex;
+  -ms-flex-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.table_style {
+  background-color: rgb(241, 241, 241);
+  box-shadow: 0px 5px 20px rgb(206, 206, 206);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  overflow: scroll;
+}
+
+.average-order-style {
+  background-color: rgb(241, 241, 241);
+  box-shadow: 0px 5px 20px rgb(206, 206, 206);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  width: 20%;
+}
