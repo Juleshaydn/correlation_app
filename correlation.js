@@ -50,18 +50,29 @@ function populateFields() {
   Purchases_2 = document.getElementById("Purchases_2").value;
   Purchases_2_value = parseInt(Purchases_2, 10);
 
-  Purchases_3 = document.getElementById("Purchases_1").value;
+  Purchases_3 = document.getElementById("Purchases_3").value;
   Purchases_3_value = parseInt(Purchases_3, 10);
 
   Purchases_all_values =
     Purchases_1_value + Purchases_2_value + Purchases_3_value;
 
+  console.log(Purchases_all_values);
   Pval = (Purchases_all_values / click_value) * 100;
 
   // Creates Add to cart Variable
   Adds_to_cart_1 = document.getElementById("Adds_to_cart_1").value;
   Adds_to_cart_1_value = parseInt(Adds_to_cart_1, 10);
-  Atc1val = (Adds_to_cart_1_value / click_value) * 100;
+
+  Adds_to_cart_2 = document.getElementById("Adds_to_cart_2").value;
+  Adds_to_cart_2_value = parseInt(Adds_to_cart_2, 10);
+
+  Adds_to_cart_3 = document.getElementById("Adds_to_cart_3").value;
+  Adds_to_cart_3_value = parseInt(Adds_to_cart_3, 10);
+
+  Add_to_cart_all_values =
+    Adds_to_cart_1_value + Adds_to_cart_2_value + Adds_to_cart_3_value;
+
+  Atc1val = (Add_to_cart_all_values / click_value) * 100;
   // Creates Unique checkouts initiated Variable
   Unique_checkouts_initiated_1 = document.getElementById(
     "Unique_checkouts_initiated_1"
@@ -70,11 +81,34 @@ function populateFields() {
     Unique_checkouts_initiated_1,
     10
   );
-  Ucival = (Unique_checkouts_initiated_1_value / click_value) * 100;
+
+  Unique_checkouts_initiated_2 = document.getElementById(
+    "Unique_checkouts_initiated_2"
+  ).value;
+  Unique_checkouts_initiated_2_value = parseInt(
+    Unique_checkouts_initiated_2,
+    10
+  );
+
+  Unique_checkouts_initiated_3 = document.getElementById(
+    "Unique_checkouts_initiated_3"
+  ).value;
+  Unique_checkouts_initiated_3_value = parseInt(
+    Unique_checkouts_initiated_3,
+    10
+  );
+
+  Unique_checkouts_initiated_all_values =
+    Unique_checkouts_initiated_1_value +
+    Unique_checkouts_initiated_2_value +
+    Unique_checkouts_initiated_3_value;
+
+  Ucival = (Unique_checkouts_initiated_all_values / click_value) * 100;
   Ucitatcval =
-    (Unique_checkouts_initiated_1_value / Adds_to_cart_1_value) * 100;
-  Ptatcval = (Purchases_all_values / Adds_to_cart_1_value) * 100;
-  Ptucival = (Purchases_all_values / Unique_checkouts_initiated_1_value) * 100;
+    (Unique_checkouts_initiated_all_values / Add_to_cart_all_values) * 100;
+  Ptatcval = (Purchases_all_values / Add_to_cart_all_values) * 100;
+  Ptucival =
+    (Purchases_all_values / Unique_checkouts_initiated_all_values) * 100;
   // CORRELATION OVERVIEW
   // Creates ROAS Variable
   Purchase_ROAS_1 = document.getElementById("Purchase_ROAS_1").value;
