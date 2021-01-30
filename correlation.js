@@ -33,7 +33,17 @@ function targetCalculator() {
 function populateFields() {
   // Creates Link Click Variable
   Link_clicks_1 = document.getElementById("Link_clicks_1").value;
-  click_value = parseInt(Link_clicks_1, 10);
+  click_value_1 = parseInt(Link_clicks_1, 10);
+
+  Link_clicks_2 = document.getElementById("Link_clicks_2").value;
+  click_value_2 = parseInt(Link_clicks_2, 10);
+
+  Link_clicks_3 = document.getElementById("Link_clicks_3").value;
+  click_value = parseInt(Link_clicks_3, 10);
+
+  click_value = click_value_1 + click_value_2 + click_value;
+  console.log(click_value);
+
   // Creates Purchases Variable
   Purchases_1 = document.getElementById("Purchases_1").value;
   Purchases_1_value = parseInt(Purchases_1, 10);
