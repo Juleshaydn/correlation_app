@@ -173,66 +173,6 @@ function populateFields() {
 
   // Updates Correlations Overview
 
-  // Checkouts Initiated to Purchase ROAS Correlation
-  x = [
-    Cost_per_initiate_checkout_value1,
-    Cost_per_initiate_checkout_value2,
-    Cost_per_initiate_checkout_value3,
-  ];
-  y = [Purchase_ROAS_1_value, Purchase_ROAS_2_value, Purchase_ROAS_3_value];
-
-  var shortestArrayLength = 0;
-
-  if (x.length == y.length) {
-    shortestArrayLength = x.length;
-  } else if (x.length > y.length) {
-    shortestArrayLength = y.length;
-    console.error(
-      "x has more items in it, the last " +
-        (x.length - shortestArrayLength) +
-        " item(s) will be ignored"
-    );
-  } else {
-    shortestArrayLength = x.length;
-    console.error(
-      "y has more items in it, the last " +
-        (y.length - shortestArrayLength) +
-        " item(s) will be ignored"
-    );
-  }
-
-  var xy = [];
-  var x2 = [];
-  var y2 = [];
-
-  for (var i = 0; i < shortestArrayLength; i++) {
-    xy.push(x[i] * y[i]);
-    x2.push(x[i] * x[i]);
-    y2.push(y[i] * y[i]);
-  }
-
-  var sum_x = 0;
-  var sum_y = 0;
-  var sum_xy = 0;
-  var sum_x2 = 0;
-  var sum_y2 = 0;
-
-  for (var i = 0; i < shortestArrayLength; i++) {
-    sum_x += x[i];
-    sum_y += y[i];
-    sum_xy += xy[i];
-    sum_x2 += x2[i];
-    sum_y2 += y2[i];
-  }
-
-  var step1 = shortestArrayLength * sum_xy - sum_x * sum_y;
-  var step2 = shortestArrayLength * sum_x2 - sum_x * sum_x;
-  var step3 = shortestArrayLength * sum_y2 - sum_y * sum_y;
-  var step4 = Math.sqrt(step2 * step3);
-  var answer = step1 / step4;
-
-  table1.rows[4].cells[2].innerHTML = answer.toFixed(2);
-
   // Adding another corrolation
   z = [1, 2, 3];
   q = [1, 2, 3];
@@ -287,5 +227,63 @@ function populateFields() {
   var step4 = Math.sqrt(step2 * step3);
   var answer1 = step1 / step4;
 
-  table1.rows[5].cells[2].innerHTML = answer1.toFixed(2);
+  // Checkouts Initiated to Purchase ROAS Correlation
+  x = [Purchase_ROAS_1_value, Purchase_ROAS_2_value, Purchase_ROAS_3_value];
+  y = [
+    Cost_per_initiate_checkout_value1,
+    Cost_per_initiate_checkout_value2,
+    Cost_per_initiate_checkout_value3,
+  ];
+
+  var shortestArrayLength = 0;
+
+  if (x.length == y.length) {
+    shortestArrayLength = x.length;
+  } else if (x.length > y.length) {
+    shortestArrayLength = y.length;
+    console.error(
+      "x has more items in it, the last " +
+        (x.length - shortestArrayLength) +
+        " item(s) will be ignored"
+    );
+  } else {
+    shortestArrayLength = x.length;
+    console.error(
+      "y has more items in it, the last " +
+        (y.length - shortestArrayLength) +
+        " item(s) will be ignored"
+    );
+  }
+
+  var xy = [];
+  var x2 = [];
+  var y2 = [];
+
+  for (var i = 0; i < shortestArrayLength; i++) {
+    xy.push(x[i] * y[i]);
+    x2.push(x[i] * x[i]);
+    y2.push(y[i] * y[i]);
+  }
+
+  var sum_x = 0;
+  var sum_y = 0;
+  var sum_xy = 0;
+  var sum_x2 = 0;
+  var sum_y2 = 0;
+
+  for (var i = 0; i < shortestArrayLength; i++) {
+    sum_x += x[i];
+    sum_y += y[i];
+    sum_xy += xy[i];
+    sum_x2 += x2[i];
+    sum_y2 += y2[i];
+  }
+
+  var step1 = shortestArrayLength * sum_xy - sum_x * sum_y;
+  var step2 = shortestArrayLength * sum_x2 - sum_x * sum_x;
+  var step3 = shortestArrayLength * sum_y2 - sum_y * sum_y;
+  var step4 = Math.sqrt(step2 * step3);
+  var answer = step1 / step4;
+
+  table1.rows[4].cells[2].innerHTML = answer.toFixed(2);
 }
