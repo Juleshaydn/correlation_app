@@ -56,7 +56,6 @@ function populateFields() {
   Purchases_all_values =
     Purchases_1_value + Purchases_2_value + Purchases_3_value;
 
-  console.log(Purchases_all_values);
   Pval = (Purchases_all_values / click_value) * 100;
 
   // Creates Add to cart Variable
@@ -77,7 +76,7 @@ function populateFields() {
   Unique_checkouts_initiated_1 = document.getElementById(
     "Unique_checkouts_initiated_1"
   ).value;
-  Unique_checkouts_initiated_1_value = parseInt(
+  Unique_checkouts_initiated_1_value = parseFloat(
     Unique_checkouts_initiated_1,
     10
   );
@@ -85,7 +84,7 @@ function populateFields() {
   Unique_checkouts_initiated_2 = document.getElementById(
     "Unique_checkouts_initiated_2"
   ).value;
-  Unique_checkouts_initiated_2_value = parseInt(
+  Unique_checkouts_initiated_2_value = parseFloat(
     Unique_checkouts_initiated_2,
     10
   );
@@ -93,7 +92,7 @@ function populateFields() {
   Unique_checkouts_initiated_3 = document.getElementById(
     "Unique_checkouts_initiated_3"
   ).value;
-  Unique_checkouts_initiated_3_value = parseInt(
+  Unique_checkouts_initiated_3_value = parseFloat(
     Unique_checkouts_initiated_3,
     10
   );
@@ -113,6 +112,16 @@ function populateFields() {
   // Creates ROAS Variable
   Purchase_ROAS_1 = document.getElementById("Purchase_ROAS_1").value;
   Purchase_ROAS_1_value = parseFloat(Purchase_ROAS_1, 10);
+
+  Purchase_ROAS_2 = document.getElementById("Purchase_ROAS_2").value;
+  Purchase_ROAS_2_value = parseFloat(Purchase_ROAS_2, 10);
+
+  Purchase_ROAS_3 = document.getElementById("Purchase_ROAS_3").value;
+  Purchase_ROAS_3_value = parseFloat(Purchase_ROAS_3, 10);
+
+  Purchase_ROAS_Values =
+    Purchase_ROAS_1_value + Purchase_ROAS_2_value + Purchase_ROAS_3_value;
+
   // Creates CPA Variable
   Cost_per_Purchase_1 = document.getElementById("Cost_per_Purchase_1").value;
   Cost_per_Purchase_1_value = parseFloat(Cost_per_Purchase_1, 10);
@@ -120,6 +129,36 @@ function populateFields() {
   // Creates Add to cart Variable
   CTR_1 = document.getElementById("CTR_1").value;
   CTR_1_value = parseFloat(CTR_1, 10);
+
+  // Creates Cost  variable
+  Amount_spent_1 = document.getElementById("Amount_spent_1").value;
+  Amount_spent_1_value = parseFloat(Amount_spent_1, 10);
+  Cost_Per_Purchase1 = Amount_spent_1_value / Purchases_1;
+  Cost_per_initiate_checkout_value1 =
+    Amount_spent_1_value / Unique_checkouts_initiated_1_value;
+  Cost_Per_Add_to_cart1 = Amount_spent_1_value / Adds_to_cart_1_value;
+  Cost_Per_Click1 = Amount_spent_1_value / click_value_1;
+
+  Amount_spent_2 = document.getElementById("Amount_spent_2").value;
+  Amount_spent_2_value = parseFloat(Amount_spent_2, 10);
+  Cost_Per_Purchase2 = Amount_spent_2_value / Purchases_2;
+  Cost_per_initiate_checkout_value2 =
+    Amount_spent_2_value / Unique_checkouts_initiated_2_value;
+  Cost_Per_Add_to_cart2 = Amount_spent_2_value / Adds_to_cart_2_value;
+  Cost_Per_Click2 = Amount_spent_2_value / click_value_2;
+
+  Amount_spent_3 = document.getElementById("Amount_spent_3").value;
+  Amount_spent_3_value = parseFloat(Amount_spent_3, 10);
+  Cost_Per_Purchase3 = Amount_spent_3_value / Purchases_3;
+  Cost_per_initiate_checkout_value3 =
+    Amount_spent_3_value / Unique_checkouts_initiated_3_value;
+  Cost_Per_Add_to_cart3 = Amount_spent_3_value / Adds_to_cart_3_value;
+  Cost_Per_Click3 = Amount_spent_3_value / click_value_3;
+
+  Amount_spent_all =
+    Amount_spent_1_value + Amount_spent_2_value + Amount_spent_3_value;
+
+  console.log(Amount_spent_all);
 
   table1 = document.getElementById("table1");
   table2 = document.getElementById("conversion_rate_overview");
@@ -134,9 +173,13 @@ function populateFields() {
 
   // Updates Correlations Overview
 
-  // Testing correlation function
-  x = [14, 12, 3];
-  y = [14, 12, 3];
+  // Checkouts Initiated to Purchase ROAS Correlation
+  x = [
+    Cost_per_initiate_checkout_value1,
+    Cost_per_initiate_checkout_value2,
+    Cost_per_initiate_checkout_value3,
+  ];
+  y = [Purchase_ROAS_1_value, Purchase_ROAS_2_value, Purchase_ROAS_3_value];
 
   var shortestArrayLength = 0;
 
@@ -188,5 +231,61 @@ function populateFields() {
   var step4 = Math.sqrt(step2 * step3);
   var answer = step1 / step4;
 
-  table1.rows[1].cells[2].innerHTML = answer.toFixed(2);
+  table1.rows[4].cells[2].innerHTML = answer.toFixed(2);
+
+  // Adding another corrolation
+  z = [1, 2, 3];
+  q = [1, 2, 3];
+
+  var shortestArrayLength = 0;
+
+  if (z.length == q.length) {
+    shortestArrayLength = z.length;
+  } else if (z.length > q.length) {
+    shortestArrayLength = q.length;
+    console.error(
+      "z has more items in it, the last " +
+        (z.length - shortestArrayLength) +
+        " item(s) will be ignored"
+    );
+  } else {
+    shortestArrayLength = z.length;
+    console.error(
+      "q has more items in it, the last " +
+        (q.length - shortestArrayLength) +
+        " item(s) will be ignored"
+    );
+  }
+
+  var zq = [];
+  var z2 = [];
+  var q2 = [];
+
+  for (var i = 0; i < shortestArrayLength; i++) {
+    zq.push(z[i] * q[i]);
+    z2.push(z[i] * z[i]);
+    q2.push(q[i] * q[i]);
+  }
+
+  var sum_z = 0;
+  var sum_q = 0;
+  var sum_zq = 0;
+  var sum_z2 = 0;
+  var sum_q2 = 0;
+
+  for (var i = 0; i < shortestArrayLength; i++) {
+    sum_z += z[i];
+    sum_q += q[i];
+    sum_zq += zq[i];
+    sum_z2 += z2[i];
+    sum_q2 += q2[i];
+  }
+
+  var step1 = shortestArrayLength * sum_zq - sum_z * sum_q;
+  var step2 = shortestArrayLength * sum_z2 - sum_z * sum_z;
+  var step3 = shortestArrayLength * sum_q2 - sum_q * sum_q;
+  var step4 = Math.sqrt(step2 * step3);
+  var answer1 = step1 / step4;
+
+  table1.rows[5].cells[2].innerHTML = answer1.toFixed(2);
 }
