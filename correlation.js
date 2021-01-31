@@ -2,6 +2,8 @@ function targetCalculator() {
   input = document.getElementById("Roas_target_input").value;
   table = document.getElementById("target_calculator");
 
+  // Creates Cost  variable
+
   //Calculates CPA
   average_order_value = document.getElementById("average-order-value")
     .innerHTML;
@@ -122,10 +124,6 @@ function populateFields() {
   Purchase_ROAS_Values =
     Purchase_ROAS_1_value + Purchase_ROAS_2_value + Purchase_ROAS_3_value;
 
-  // Creates CPA Variable
-  Cost_per_Purchase_1 = document.getElementById("Cost_per_Purchase_1").value;
-  Cost_per_Purchase_1_value = parseFloat(Cost_per_Purchase_1, 10);
-
   // Creates Add to cart Variable
   CTR_1 = document.getElementById("CTR_1").value;
   CTR_1_value = parseFloat(CTR_1, 10);
@@ -158,8 +156,6 @@ function populateFields() {
   Amount_spent_all =
     Amount_spent_1_value + Amount_spent_2_value + Amount_spent_3_value;
 
-  console.log(Amount_spent_all);
-
   table1 = document.getElementById("table1");
   table2 = document.getElementById("conversion_rate_overview");
 
@@ -172,60 +168,6 @@ function populateFields() {
   table2.rows[6].cells[1].innerHTML = Ptucival.toFixed(1) + "%";
 
   // Updates Correlations Overview
-
-  // Adding another corrolation
-  z = [1, 2, 3];
-  q = [1, 2, 3];
-
-  var shortestArrayLength = 0;
-
-  if (z.length == q.length) {
-    shortestArrayLength = z.length;
-  } else if (z.length > q.length) {
-    shortestArrayLength = q.length;
-    console.error(
-      "z has more items in it, the last " +
-        (z.length - shortestArrayLength) +
-        " item(s) will be ignored"
-    );
-  } else {
-    shortestArrayLength = z.length;
-    console.error(
-      "q has more items in it, the last " +
-        (q.length - shortestArrayLength) +
-        " item(s) will be ignored"
-    );
-  }
-
-  var zq = [];
-  var z2 = [];
-  var q2 = [];
-
-  for (var i = 0; i < shortestArrayLength; i++) {
-    zq.push(z[i] * q[i]);
-    z2.push(z[i] * z[i]);
-    q2.push(q[i] * q[i]);
-  }
-
-  var sum_z = 0;
-  var sum_q = 0;
-  var sum_zq = 0;
-  var sum_z2 = 0;
-  var sum_q2 = 0;
-
-  for (var i = 0; i < shortestArrayLength; i++) {
-    sum_z += z[i];
-    sum_q += q[i];
-    sum_zq += zq[i];
-    sum_z2 += z2[i];
-    sum_q2 += q2[i];
-  }
-
-  var step1 = shortestArrayLength * sum_zq - sum_z * sum_q;
-  var step2 = shortestArrayLength * sum_z2 - sum_z * sum_z;
-  var step3 = shortestArrayLength * sum_q2 - sum_q * sum_q;
-  var step4 = Math.sqrt(step2 * step3);
-  var answer1 = step1 / step4;
 
   // Checkouts Initiated to Purchase ROAS Correlation
   x = [Purchase_ROAS_1_value, Purchase_ROAS_2_value, Purchase_ROAS_3_value];
@@ -286,4 +228,5 @@ function populateFields() {
   var answer = step1 / step4;
 
   table1.rows[4].cells[2].innerHTML = answer.toFixed(2);
+  table1.rows[4].cells[1].innerHTML = answer.toFixed(2);
 }
