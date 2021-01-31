@@ -1,20 +1,29 @@
 body {
-  margin: 0;
+  margin: 40px;
 }
 
 .table_overviews {
   display: flex;
   -ms-flex-align: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .table_style {
   background-color: rgb(241, 241, 241);
-  box-shadow: 0px 5px 20px rgb(206, 206, 206);
-  margin: 10px;
-  padding: 10px;
-  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.123);
+  width: 30%;
+  margin: 5px;
+  padding: 5px;
+  overflow: scroll;
+}
+
+#table_style {
+  background-color: rgb(241, 241, 241);
+  box-shadow: 0px 5px 20px rgba(206, 206, 206, 0.658);
+  width: 100%;
+  margin: 5px;
+  padding: 5px;
   overflow: scroll;
 }
 
@@ -23,6 +32,5 @@ body {
   box-shadow: 0px 5px 20px rgb(206, 206, 206);
   margin: 10px;
   padding: 10px;
-  border-radius: 20px;
   width: 20%;
 }

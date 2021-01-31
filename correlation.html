@@ -24,23 +24,23 @@
                 <div class="correlations_overview_results">
                     <tr>
                         <td class="s2">Click Through Rate</td>
-                        <td class="s3">-0.14</td>
-                        <td class="s4">-0.50</td>
+                        <td class="s3"></td>
+                        <td class="s4"></td>
                     </tr>
                     <tr>
                         <td class="s2">Cost Per Click</td>
-                        <td class="s3">-0.29</td>
-                        <td class="s4">0.75</td>
+                        <td class="s3"></td>
+                        <td class="s4"></td>
                     </tr>
                     <tr>
                         <td class="s2">Cost Per Add To Cart</td>
-                        <td class="s3">-0.06</td>
-                        <td class="s4">0.06</td>
+                        <td class="s3"></td>
+                        <td class="s4"></td>
                     </tr>
                     <tr>
                         <td class="s2">Cost Per Initiate Checkout</td>
-                        <td class="s3">0.76</td>
-                        <td class="s4">-0.59</td>
+                        <td class="s3"></td>
+                        <td class="s4"></td>
                     </tr>
                     <tr>
                         <td class="s2">CPA</td>
@@ -125,17 +125,12 @@
                 </div>
             </table>
         </div>
-
-        <div class="average-order-style">
-            <h2>Average Order Value</h2>
-            <tb id="average-order-value" type="number">150</tb>
-        </div>
     </div>
 
 
 
     <!--FACEBOOK DATA-->
-    <div class="table_style">
+    <div id="table_style">
         <table id="facebook_data">
             <h2>Facebook Data</h2>
             <button class="populate_correlation" onclick="populateFields()">go</button>
@@ -159,7 +154,9 @@
                         <input id="Amount_spent_1" type="number">
                     </td>
 
-                    <td class="Purchases_Conversion_Value_1"><input type="number"></td>
+                    <td inputtype="number" class="s17" dir="ltr">
+                        <input id="Purchases_Conversion_Value_1" type="number">
+                    </td>
 
                     <td inputtype="number" class="s17" dir="ltr">
                         <input id="Purchases_1" type="number">
@@ -183,7 +180,7 @@
                     </td>
 
                     <td inputtype="number" class="s17" dir="ltr">
-                        <input id="CTR_1" type="number">
+                        <input id="click-through-rate_1" type="number">
                     </td>
 
                 </tr>
@@ -194,7 +191,9 @@
                         <input id="Amount_spent_2" type="number">
                     </td>
 
-                    <td class="Purchases_Conversion_Value_2" dir="ltr">12</td>
+                    <td inputtype="number" class="s17" dir="ltr">
+                        <input id="Purchases_Conversion_Value_2" type="number">
+                    </td>
 
                     <td inputtype="number" class="s17" dir="ltr">
                         <input id="Purchases_2" type="number">
@@ -217,7 +216,9 @@
                         <input id="Link_clicks_2" type="number">
                     </td>
 
-                    <td class="CTR_2" dir="ltr">432</td>
+                    <td inputtype="number" class="s17" dir="ltr">
+                        <input id="click-through-rate_2" type="number">
+                    </td>
                 </tr>
                 <tr>
                     <td class="Ad_name_3" dir="ltr">Ad set 3</td>
@@ -226,7 +227,9 @@
                         <input id="Amount_spent_3" type="number">
                     </td>
 
-                    <td class="Purchases_Conversion_Value_3" dir="ltr">12</td>
+                    <td inputtype="number" class="s17" dir="ltr">
+                        <input id="Purchases_Conversion_Value_3" type="number">
+                    </td>
 
                     <td inputtype="number" class="s17" dir="ltr">
                         <input id="Purchases_3" type="number">
@@ -248,11 +251,18 @@
                     <td inputtype="number" class="s17" dir="ltr">
                         <input id="Link_clicks_3" type="number">
                     </td>
-                    
-                    <td class="CTR_3" dir="ltr">432</td>
+
+                    <td inputtype="number" class="s17" dir="ltr">
+                        <input id="click-through-rate_3" type="number">
+                    </td>
                 </tr>
             </div>
         </table>
+    </div>
+
+    <div class="average-order-style">
+        <h2>Average Order Value</h2>
+        <tb id="average-order-value" type="number">150</tb>
     </div>
 </body>
 </html>
