@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
 
 <head>
@@ -15,6 +17,7 @@
 
         <!--CORRELATIONS OVERIEW-->
         <div class="table_style">
+
             <table id="table1">
                 <tr>
                     <td class="s0">Correlations</td>
@@ -43,7 +46,6 @@
                         <td class="s3"></td>
                         <td class="s4"></td>
                     </tr>
-
                 </div>
             </table>
         </div>
@@ -128,10 +130,10 @@
         <script src="/CSV_upload.js" type="text/javascript"></script>
         <input type="file" id="fileUpload" />
         <input type="button" id="upload" value="Upload" onclick="Upload()" />
+        <button class="populate_correlation" onclick="populateFields()">go</button>
         <hr />
         <div id="dvCSV">
         </div>
-            <button class="populate_correlation" onclick="populateFields()">go</button>
             <div class="ad_metrics">
                 <tr>
                     <td class="Ad_name" dir="ltr">Ad name</td>

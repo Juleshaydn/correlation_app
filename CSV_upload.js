@@ -12,12 +12,12 @@ function Upload() {
           if (cells.length > 1) {
             var row = table.insertRow(-1);
             // Sets id for row
-            row.setAttribute("id", "id-" + [i]);
+            row.setAttribute("id", "row-" + [i]);
             //
             for (var j = 0; j < cells.length; j++) {
               var cell = row.insertCell(-1);
               // Sets id for cell
-              cell.setAttribute("id", "cell-" + [i] + [j]);
+              cell.setAttribute("class", "cell-" + [j]);
               //
               cell.innerHTML = cells[j];
             }

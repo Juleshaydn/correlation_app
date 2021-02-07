@@ -207,11 +207,6 @@ function populateFields() {
 
   // Checkouts Initiated to Purchase CPA Correlation
 
-  // Cost_Per_Add_to_cart_Array
-  // Cost_Per_Click_Array
-  // Click_through_rate_array
-  // Cost_per_checkout_array
-
   x = Cpa_array;
   y = Cost_Per_Add_to_cart_Array;
 
@@ -666,61 +661,87 @@ function populateFields() {
 
   table1.rows[3].cells[1].innerHTML = answer.toFixed(2);
 
-  // CPA to ROAS Corrolaction
+  //===================================
+  //     Saving CSV fields to vars
+  //===================================
 
-  x = Cpa_array;
-  y = Roas_array;
+  // Total Amount Spent
+  let amountSpent = 0;
+  $(".cell-1").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      amountSpent += parseFloat(value);
+    }
+  });
+  console.log(amountSpent.toFixed(2));
 
-  var shortestArrayLength = 0;
+  // Total Purchases Conversion Value
+  let Purchases_Conversion_Value = 0;
+  $(".cell-2").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      Purchases_Conversion_Value += parseFloat(value);
+    }
+  });
+  console.log(Purchases_Conversion_Value.toFixed(2));
 
-  if (x.length == y.length) {
-    shortestArrayLength = x.length;
-  } else if (x.length > y.length) {
-    shortestArrayLength = y.length;
-    console.error(
-      "x has more items in it, the last " +
-        (x.length - shortestArrayLength) +
-        " item(s) will be ignored"
-    );
-  } else {
-    shortestArrayLength = x.length;
-    console.error(
-      "y has more items in it, the last " +
-        (y.length - shortestArrayLength) +
-        " item(s) will be ignored"
-    );
-  }
+  // Total Purchases
+  let purchases = 0;
+  $(".cell-3").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      purchases += parseFloat(value);
+    }
+  });
+  console.log(purchases);
 
-  var xy = [];
-  var x2 = [];
-  var y2 = [];
+  // Total Purchase ROAS (return on ad spend)
+  let Purchase_ROAS = 0;
+  $(".cell-4").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      Purchase_ROAS += parseFloat(value);
+    }
+  });
+  console.log(Purchase_ROAS.toFixed(2));
 
-  for (var i = 0; i < shortestArrayLength; i++) {
-    xy.push(x[i] * y[i]);
-    x2.push(x[i] * x[i]);
-    y2.push(y[i] * y[i]);
-  }
+  // Total Unique checkouts initiated
+  let Unique_checkouts_initiated = 0;
+  $(".cell-5").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      Unique_checkouts_initiated += parseFloat(value);
+    }
+  });
+  console.log(Unique_checkouts_initiated);
 
-  var sum_x = 0;
-  var sum_y = 0;
-  var sum_xy = 0;
-  var sum_x2 = 0;
-  var sum_y2 = 0;
+  // Total Adds to cart
+  let Adds_to_cart = 0;
+  $(".cell-6").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      Adds_to_cart += parseFloat(value);
+    }
+  });
+  console.log(Adds_to_cart);
 
-  for (var i = 0; i < shortestArrayLength; i++) {
-    sum_x += x[i];
-    sum_y += y[i];
-    sum_xy += xy[i];
-    sum_x2 += x2[i];
-    sum_y2 += y2[i];
-  }
+  // Total Link clicks
+  let Link_clicks = 0;
+  $(".cell-7").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      Link_clicks += parseFloat(value);
+    }
+  });
+  console.log(Link_clicks);
 
-  var step1 = shortestArrayLength * sum_xy - sum_x * sum_y;
-  var step2 = shortestArrayLength * sum_x2 - sum_x * sum_x;
-  var step3 = shortestArrayLength * sum_y2 - sum_y * sum_y;
-  var step4 = Math.sqrt(step2 * step3);
-  var answer = step1 / step4;
-
-  table1.rows[5].cells[2].innerHTML = answer.toFixed(2);
-  table1.rows[6].cells[1].innerHTML = answer.toFixed(2);
+  // Total CTR (link click-through rate)
+  let CTR = 0;
+  $(".cell-8").each(function () {
+    var value = $(this).text();
+    if (!isNaN(value) && value.length != 0) {
+      CTR += parseFloat(value);
+    }
+  });
+  console.log(CTR.toFixed(2));
 }
