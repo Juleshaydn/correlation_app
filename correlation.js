@@ -4,7 +4,7 @@ function populateFields() {
   //===================================
 
   // Total Amount Spent
-  let amountSpent = 0;
+  amountSpent = 0;
   let amountSpentArr = [];
   $(".cell-1").each(function () {
     var value = $(this).text();
@@ -20,7 +20,7 @@ function populateFields() {
   $(".cell-2").each(function () {
     var value = $(this).text();
     if (!isNaN(value) && value.length != 0) {
-      purchasesConversionValueArr.push(value);
+      purchasesConversionValueArr.push(Math.round(value));
       purchasesConversionValue += parseFloat(value, 10);
     }
   });
@@ -28,6 +28,7 @@ function populateFields() {
   // Total Purchases
   let purchases = 0;
   let purchasesArr = [];
+  let costPerPurchaseArr = [];
   $(".cell-3").each(function () {
     var value = $(this).text();
     if (!isNaN(value) && value.length != 0) {
@@ -42,12 +43,12 @@ function populateFields() {
   $(".cell-4").each(function () {
     var value = $(this).text();
     if (!isNaN(value) && value.length != 0) {
-      purchaseROASArr.push(value);
+      purchaseROASArr.push(String(Math.round(value)));
       purchaseROAS += parseFloat(value, 10);
     }
   });
 
-  // Total Unique checkouts initiated
+  // Total checkouts initiated
   checkoutsInitiated = 0;
   let checkoutsInitiatedArr = [];
   $(".cell-5").each(function () {
@@ -87,15 +88,39 @@ function populateFields() {
   $(".cell-8").each(function () {
     var value = $(this).text();
     if (!isNaN(value) && value.length != 0) {
-      ctrArr.push(value);
+      ctrArr.push(String(Math.round(value)));
       ctr += parseFloat(value, 10);
     }
   });
 
+  // Updates Conversion rate
+  conversionTable = document.getElementById("conversion_rate_overview");
+
+  clicksToCart = (addsToCart / linkClicks) * 100;
+  conversionTable.rows[1].cells[1].innerHTML = clicksToCart.toFixed(2) + "%";
+
+  clicksToCheckout = (checkoutsInitiated / linkClicks) * 100;
+  conversionTable.rows[2].cells[1].innerHTML =
+    clicksToCheckout.toFixed(2) + "%";
+
+  clicksToPurchase = (purchases / linkClicks) * 100;
+  conversionTable.rows[3].cells[1].innerHTML =
+    clicksToPurchase.toFixed(2) + "%";
+
+  cartToCheckout = (checkoutsInitiated / addsToCart) * 100;
+  conversionTable.rows[4].cells[1].innerHTML = cartToCheckout.toFixed(2) + "%";
+
+  cartToPurchase = (purchases / addsToCart) * 100;
+  conversionTable.rows[5].cells[1].innerHTML = cartToPurchase.toFixed(2) + "%";
+
+  checkoutToPurchase = (purchases / checkoutsInitiated) * 100;
+  conversionTable.rows[6].cells[1].innerHTML =
+    checkoutToPurchase.toFixed(2) + "%";
+
   cpa = amountSpent / purchases;
 
-  x = purchasesArr;
-  y = linkClicksArr;
+  x = purchaseROASArr;
+  y = ctrArr;
 
   var shortestArrayLength = 0;
 
@@ -147,8 +172,10 @@ function populateFields() {
   var step4 = Math.sqrt(step2 * step3);
   var answer = step1 / step4;
 
-  console.log(answer.toFixed(2));
-  document.getElementById("average-order-value").innerHTML = cpa.toFixed(2);
+  Aov = purchasesConversionValue / purchases;
+  table1 = document.getElementById("table1");
+  document.getElementById("average-order-value").innerHTML = Aov.toFixed(2);
+  table1.rows[1].cells[2].innerHTML = answer.toFixed(2);
 }
 
 function targetCalculator() {
